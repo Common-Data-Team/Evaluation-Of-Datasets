@@ -11,7 +11,7 @@
 ## ⏰ TODO
 
 ## 💰 Поддержать проект
-Поддержать проекты команды [Common Data Team](https://github.com/Common-Data-Team) можно на [Patreon](https://www.patreon.com/commondatateam)
+Помочь в развитии проектов [Common Data Team](https://github.com/Common-Data-Team) можно на [Patreon](https://www.patreon.com/commondatateam)
 
 ## 🚀 Get started
 
