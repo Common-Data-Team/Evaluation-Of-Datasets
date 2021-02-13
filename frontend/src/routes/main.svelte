@@ -12,14 +12,16 @@ import {push} from 'svelte-spa-router';
     </div>
 </header>
 <main>
-    <div class="first-block">
-        <div class="description">
-            <h1>Check the Data</h1>
-            <p>Сервис для аналитики и улучшения датасетов</p>
-            <button on:click={() => push('/service')}>Попробовать</button>
-        </div>
-        <div class="image">
-            <img src="./images/main_img.svg" alt="main-image">
+    <div class="first-view">
+        <div class="first-block">
+            <div class="description">
+                <h1>Check the Data</h1>
+                <p>Сервис для аналитики и улучшения датасетов</p>
+                <button on:click={() => push('/service')}>Попробовать</button>
+            </div>
+            <div class="image">
+                <img src="./images/main_img.svg" alt="main-image">
+            </div>
         </div>
     </div>
     <div class="second-block">
@@ -87,11 +89,15 @@ import {push} from 'svelte-spa-router';
         text-align: left;
     }
 
+    .first-view {
+        width: 100%;
+        height: 90vh;
+    }
+
     .first-block {
         display: flex;
         justify-content: center;
         align-items: center;
-
     }
 
     header img {
@@ -104,7 +110,7 @@ import {push} from 'svelte-spa-router';
     }
 
     .image img {
-        width: 600px;
+        max-width: 600px;
     }
 
     .description button {
