@@ -1,18 +1,38 @@
 <script>
-    let files;
-    const url = 'https://2f99fdda6818.ngrok.io/'
+    import Statistics from './_components/Statistics.svelte'
+    import { SpinLine } from 'svelte-loading-spinners'
+
+    let show_statistics = false;
+    let files = [];
+    const url = 'https://backendatasets.commondata.ru/'
     async function sendFile() {
-        let headers = new Headers();
-        headers.append('accept', 'application/json');
-        headers.append('Content-type', 'multipart/form-data');
-        let form_data = new FormData();
-        let file = document.getElementById('file').files[0];
-        form_data.append("file", files[0], files[0].name)
-        let response = await fetch(url + 'upload', {
-            method: "POST",
-            body: form_data
-        }).then(response => response.json())
-        console.log(response);
+        if (files.length === 0) {
+            let label_text = document.getElementById('input-label')
+            label_text.innerText = 'Вы не выбрали файл!';
+            label_text.style.color="#FF0033";
+        }
+        if (files[0].name.split('.').pop() == 'csv') {
+            let form_data = new FormData();
+            form_data.append("file", files[0], files[0].name);
+            let response;
+            show_statistics = true;
+            document.getElementById('statistics-block').scrollIntoView({block: 'start', behavior: 'smooth'});
+            try {
+                response = await fetch(url + 'upload', {
+                    method: "POST",
+                    body: form_data
+                }).then(response => response.json())
+            } catch (error) {
+                throw new Error(error.text)
+            }
+            return response;
+        }
+    }
+
+    let promise;
+
+    function handleClick() {
+        promise = sendFile();
     }
 
     function overrideDefault(event) {
@@ -48,22 +68,34 @@
     <p>Check the Data</p>
 </header>
 <main>
-    <p class="tagline">Узнайте, как улучшить свой датасет с помощью наших алгоритмов</p>
-<!--    <form action="https://2f99fdda6818.ngrok.io/upload" enctype="multipart/form-data" method="post">-->
-    <div class="input-zone">
-    <input type="file" id="file" name="files" bind:files on:change={changeLabel}>
-        <label for="file" id="file-label"
-        on:dragover={(e) => {overrideDefault(e); document.getElementById('file-label').style.filter="blur(1px)"}}
-        on:dragenter={overrideDefault}
-        on:dragleave={(e) => {overrideDefault(e); document.getElementById('file-label').style.filter="blur(0)"}}
-        on:drop={(e) => {overrideDefault(e); addFile(e); document.getElementById('file-label').style.filter="blur(0)"}}
-        >
-            <img src="download.svg" alt="">
-            <p id="input-label">Выберите файл для загрузки или перетащите сюда</p>
-        </label>
+    <div class="first-view">
+        <p class="tagline">Узнайте, как улучшить свой датасет с помощью наших алгоритмов</p>
+        <div class="input-zone">
+        <input type="file" id="file" name="files" bind:files on:change={changeLabel}>
+            <label for="file" id="file-label"
+            on:dragover={(e) => {overrideDefault(e); document.getElementById('file-label').style.filter="blur(1px)"}}
+            on:dragenter={overrideDefault}
+            on:dragleave={(e) => {overrideDefault(e); document.getElementById('file-label').style.filter="blur(0)"}}
+            on:drop={(e) => {overrideDefault(e); addFile(e); document.getElementById('file-label').style.filter="blur(0)"}}
+            >
+                <img src="download.svg" alt="">
+                <p id="input-label">Выберите файл для загрузки или перетащите сюда</p>
+            </label>
+        </div>
+        <button id="submit-button" on:click={handleClick}>Обработать</button>
     </div>
-    <button id="submit-button" on:click={sendFile}>Обработать</button>
-<!--    </form>-->
+    <div id="statistics-block">
+    {#if show_statistics}
+        {#await promise}
+            <div class="spinner">
+            <SpinLine size="100" color="#282828" duration="4s"/>
+            </div>
+        {:then data}
+            <h1>Результаты анализа</h1>
+            <Statistics {data}/>
+        {/await}
+    {/if}
+    </div>
 </main>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
@@ -88,6 +120,10 @@
 
     main {
         text-align: center;
+    }
+
+    .first-view {
+        height: 90vh;
     }
 
     .tagline {
@@ -140,5 +176,16 @@
     }
     #submit-button:hover {
         cursor: pointer;
+    }
+
+    #statistics-block {
+        height: 400px;
+    }
+
+    .spinner {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>

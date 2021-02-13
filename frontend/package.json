@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "sirv-cli": "^1.0.0",
+    "svelte-loading-spinners": "^0.1.4",
     "svelte-spa-router": "^3.1.0"
   }
 }
