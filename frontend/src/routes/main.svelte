@@ -9,7 +9,7 @@ import Footer from './_components/Footer.svelte';
     <div class="social-icons">
         <a href="https://github.com/Common-Data-Team"><img src="./images/icons/Github_black.svg" alt="github-logo-icon"></a>
         <a href="https://www.patreon.com/commondatateam"><img src="./images/icons/Patreon_black.svg" alt="patreon-logo-icon"></a>
-        <a href="https://www.linkedin.com/company/common-data-team"><img src="./images/icons/linkedIN_black.svg" alt="linkedin-logo-icon"></a>
+        <a href="https://www.linkedin.com/company/common-data-team"><img src="./images/icons/LinkedIN_black.svg" alt="linkedin-logo-icon"></a>
         <a href="https://t.me/commondatateam"><img src="./images/icons/Telegram_black.svg" alt="telegram-logo-icon"></a>
     </div>
 </header>
