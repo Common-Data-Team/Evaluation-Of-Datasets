@@ -183,6 +183,7 @@
     }
 
     #statistics-block h1 {
+        font-family: Raleway;
         margin: 0;
     }
 
