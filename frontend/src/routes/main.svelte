@@ -2,6 +2,7 @@
 import Steps from './_components/Steps.svelte';
 import {push} from 'svelte-spa-router';
 import Subscribe from './_components/Subscribe.svelte';
+import Footer from './_components/Footer.svelte';
 </script>
 <header>
     <img id="logo" src="logo.svg" alt="cd">
@@ -50,6 +51,7 @@ import Subscribe from './_components/Subscribe.svelte';
     <div class="subscribe">
         <Subscribe></Subscribe>
     </div>
+    <Footer></Footer>
 </main>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
