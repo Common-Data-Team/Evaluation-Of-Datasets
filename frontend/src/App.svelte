@@ -33,7 +33,7 @@
     <p>Check the Data</p>
 </header>
 <main>
-    <p class="tagline">Узнайте, как улучшить свой датасет с помощью наших алгоритмов!</p>
+    <p class="tagline">Узнайте, как улучшить свой датасет с помощью наших алгоритмов</p>
     <div class="input-zone">
     <input type="file" id="file" name="files" bind:files on:change={changeLabel}>
         <label for="file" id="file-label"
