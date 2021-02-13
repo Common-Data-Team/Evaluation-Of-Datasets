@@ -1,2 +1,5 @@
 .ipynb_checkpoints
 secrets.yml
+__pycache__
+credentials.json
+token.pickle

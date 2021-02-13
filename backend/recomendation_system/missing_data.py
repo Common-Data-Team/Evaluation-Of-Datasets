@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from collections import Counter
 
-import text_configs 
+from recomendation_system import text_configs
 # Считаем соотношение пропусков по каждой фиче
 def get_missing_by_col(db: pd.DataFrame) -> dict:
     dict_missing_by_col = {}
