@@ -8,18 +8,44 @@
         </div>
         <img src="images/world.svg" alt="">
     </div>
+    <div class="step-block right">
+        <img src="images/recomendations.svg" alt="">
+        <h1 class="step-number">02</h1>
+        <div class="step-info">
+            <h1>Получите рекомендации</h1>
+            <p>Загрузите датасет на нашу платформу и получите практические советы о том, как улучшить ваш датасет</p>
+        </div>
+    </div>
+    <div class="step-block">
+        <h1 class="step-number">02</h1>
+        <div class="step-info">
+            <h1>Обработайте датасет</h1>
+            <p>Воспользуйтесь нашими инструкциями или автоматизированным алгоритмом для обработки и разметки датасета</p>
+        </div>
+        <img src="images/dataset.svg" alt="">
+    </div>
 </div>
 
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700&display=swap" rel="stylesheet">
 <style>
+    .component {
+        max-width: 1000px;
+        margin: auto;
+    }
+
     .title {
         text-align: center;
     }
 
     .step-block {
         display: flex;
-        margin: 100px;
+        width: 100%;
+        margin: 80px 20px;
+    }
+
+    .right {
+        justify-content: flex-end;
     }
 
     .step-block h1 {
@@ -48,5 +74,6 @@
 
     .step-block img {
         width: 200px;
+        margin-right: 50px;
     }
 </style>
