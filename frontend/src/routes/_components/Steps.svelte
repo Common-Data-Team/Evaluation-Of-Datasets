@@ -57,6 +57,7 @@
         font-family: 'Red Hat Display', sans-serif;
         color: #1355FF;
     }
+
     .step-info {
         font-family: 'Roboto', sans-serif;
         text-align: left;
@@ -87,6 +88,10 @@
 
         .step-info p {
             width: 200px;
+        }
+
+        .right {
+            justify-content: flex-start;
         }
     }
 
