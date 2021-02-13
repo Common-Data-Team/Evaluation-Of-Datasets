@@ -96,9 +96,18 @@ import Footer from './_components/Footer.svelte';
         text-align: left;
     }
 
+    .description h1 {
+        font-size: calc(36px + (48 - 36) * ((100vw - 300px) / (1440 - 300)));
+    }
+
+    .description p {
+        font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (1440 - 300)));
+        max-width: 300px;
+    }
+
     .first-view {
         width: 100%;
-        height: 90vh;
+        height: 70vh;
     }
 
     .first-block {
@@ -111,6 +120,7 @@ import Footer from './_components/Footer.svelte';
         display: flex;
         justify-content: center;
         text-align: center;
+        margin-top: 3%;
     }
 
     header img {
@@ -136,5 +146,35 @@ import Footer from './_components/Footer.svelte';
         margin: 20px auto;
     }
 
+    @media (max-width: 700px) { 
+        .cards {
+            flex-direction: column;
+        }
+
+        .card {
+            width: 80%;
+        }
+
+        .first-block {
+            flex-direction: column-reverse;
+            text-align: center;
+        }
+
+        .first-block img {
+            width: 80%;
+        }
+
+        .description {
+            text-align: center;
+        }
+
+        .social-icons img {
+            width: 24px;
+        }
+
+        #logo {
+            width: 48px;
+        }
+    }
 
 </style>
