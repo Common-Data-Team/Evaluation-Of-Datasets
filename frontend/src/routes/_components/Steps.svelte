@@ -30,7 +30,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700&display=swap" rel="stylesheet">
 <style>
     .component {
-        max-width: 1000px;
+        max-width: 80%;
         margin: auto;
     }
 
