@@ -1,6 +1,8 @@
 <script>
 import Steps from './_components/Steps.svelte';
 import {push} from 'svelte-spa-router';
+import Subscribe from './_components/Subscribe.svelte';
+import Footer from './_components/Footer.svelte';
 </script>
 <header>
     <img id="logo" src="logo.svg" alt="cd">
@@ -45,6 +47,11 @@ import {push} from 'svelte-spa-router';
         </div>
     </div>
     <Steps/>
+    <h1 class="subscribe">Подписаться на новости сервиса</h1>
+    <div class="subscribe">
+        <Subscribe></Subscribe>
+    </div>
+    <Footer></Footer>
 </main>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
@@ -89,15 +96,31 @@ import {push} from 'svelte-spa-router';
         text-align: left;
     }
 
+    .description h1 {
+        font-size: calc(36px + (48 - 36) * ((100vw - 300px) / (1440 - 300)));
+    }
+
+    .description p {
+        font-size: calc(16px + (24 - 16) * ((100vw - 300px) / (1440 - 300)));
+        max-width: 300px;
+    }
+
     .first-view {
         width: 100%;
-        height: 90vh;
+        height: 70vh;
     }
 
     .first-block {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    .subscribe {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin-top: 3%;
     }
 
     header img {
@@ -123,5 +146,35 @@ import {push} from 'svelte-spa-router';
         margin: 20px auto;
     }
 
+    @media (max-width: 700px) { 
+        .cards {
+            flex-direction: column;
+        }
+
+        .card {
+            width: 80%;
+        }
+
+        .first-block {
+            flex-direction: column-reverse;
+            text-align: center;
+        }
+
+        .first-block img {
+            width: 80%;
+        }
+
+        .description {
+            text-align: center;
+        }
+
+        .social-icons img {
+            width: 24px;
+        }
+
+        #logo {
+            width: 48px;
+        }
+    }
 
 </style>

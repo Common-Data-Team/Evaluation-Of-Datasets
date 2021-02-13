@@ -1,3 +1,27 @@
+@font-face {
+    font-family: "Helvetica Neue";
+    src: url("/fonts/HelveticaNeueBoldCondensed.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Helvetica Norm";
+    src: url("/fonts/HelveticaNeueCyr-Roman.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "SF Pro Display";
+    src: url("/fonts/SFProDisplay-Light.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+    font-display: swap;
+}
+
 html, body {
 	position: relative;
 	width: 100%;
