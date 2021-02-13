@@ -1,5 +1,19 @@
 <script>
     let files;
+    const url = 'https://2f99fdda6818.ngrok.io/'
+    async function sendFile() {
+        let headers = new Headers();
+        headers.append('accept', 'application/json');
+        headers.append('Content-type', 'multipart/form-data');
+        let form_data = new FormData();
+        let file = document.getElementById('file').files[0];
+        form_data.append("file", files[0], files[0].name)
+        let response = await fetch(url + 'upload', {
+            method: "POST",
+            body: form_data
+        }).then(response => response.json())
+        console.log(response);
+    }
 
     function overrideDefault(event) {
         event.preventDefault();
@@ -8,6 +22,7 @@
 
     function addFile(event) {
         files = event.dataTransfer.files;
+        console.log(files[0].name);
         changeLabel();
     }
 
@@ -34,6 +49,7 @@
 </header>
 <main>
     <p class="tagline">Узнайте, как улучшить свой датасет с помощью наших алгоритмов</p>
+<!--    <form action="https://2f99fdda6818.ngrok.io/upload" enctype="multipart/form-data" method="post">-->
     <div class="input-zone">
     <input type="file" id="file" name="files" bind:files on:change={changeLabel}>
         <label for="file" id="file-label"
@@ -46,7 +62,8 @@
             <p id="input-label">Выберите файл для загрузки или перетащите сюда</p>
         </label>
     </div>
-<button id="submit-button">Обработать</button>
+    <button id="submit-button" on:click={sendFile}>Обработать</button>
+<!--    </form>-->
 </main>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
