@@ -54,6 +54,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
 <style>
     #window {
+        width: 100%;
+        height: 100%;
         background-color: #E5E5E5;
     }
 
@@ -87,8 +89,8 @@
     .input-zone {
         background-color: #FEFEFE;
         border: 2px #282828 dashed;
-        width: 80%;
-        height: 400px;
+        width: 70%;
+        height: 350px;
         margin: 10px auto;
     }
 
