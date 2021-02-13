@@ -124,7 +124,8 @@ def get_response_for_missing(db: pd.DataFrame) -> dict:
       missed_col_normal: названия признаков с нормальной долей пропусков,
       missed_col_low: названия признаков с вполне терпимой долей пропусков;
     miss_by_row: пропуски по строкам; 
-    miss_by_dtype: пропуски по типам данных. 
+    miss_by_dtype: пропуски по типам данных;
+    duplicate: наличие дубликатов.
     Если какой-то из ключей отчета пуст - значит данные в этом плане 
     оптимизированы и мы в конечную верстку это не включаем.
     '''
@@ -133,7 +134,8 @@ def get_response_for_missing(db: pd.DataFrame) -> dict:
                 "missed_col_normal": [],
                 "missed_col_low": [],
                 "miss_by_row": "",
-                "miss_by_dtype": ""}
+                "miss_by_dtype": "",
+                "duplicate": ""}
 
     miss_by_col = get_distrib_missing_by_col(db)
     miss_by_row = get_distrib_missing_by_row(db)
@@ -165,5 +167,8 @@ def get_response_for_missing(db: pd.DataFrame) -> dict:
         for name in miss_by_features['missing_40']:
             txt += (name + "\n")
         response["miss_by_col"] = txt
+
+    if sum(db.duplicated()) > 0:
+        response["duplicate"] = text_configs.duplicate
 
     return response
