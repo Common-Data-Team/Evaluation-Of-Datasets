@@ -75,7 +75,7 @@
 
     .tagline {
         font-family: 'Roboto', sans-serif;
-        font-size: max(20px, 2vw);
+        font-size: max(20px, 1.5vw);
         text-align: center;
         margin: 20px 50px 50px 50px;
     }
