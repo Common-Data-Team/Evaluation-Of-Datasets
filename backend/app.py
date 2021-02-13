@@ -1,12 +1,12 @@
 import re
 import uvicorn
 from fastapi import FastAPI, File, UploadFile, Body
+from fastapi.responses import HTMLResponse
 from starlette.middleware.cors import CORSMiddleware
 import pandas as pd
 from io import BytesIO
 from pydantic import BaseModel
 from column_analyzer import get_chart_data
-
 
 app = FastAPI()
 email_template = re.compile('^[^@]+@[^@.]+\.[^@]+$')
@@ -30,8 +30,8 @@ class Email(BaseModel):
 
 
 @app.post('/upload')
-def process(file: bytes = File(...)):
-    df = pd.read_csv(BytesIO(file))
+def process(file: UploadFile = File(...)):
+    df = pd.read_csv(BytesIO(file.file.read()))
     return {'charts': get_chart_data(df)}
 
 
@@ -43,6 +43,19 @@ def save_email(email_json: Email = Body(...)):
 @app.get('/ping')
 def ping():
     return 'ok'
+
+
+@app.get('/')
+def first():
+    content = """
+    <body>
+    <form action="/upload" enctype="multipart/form-data" method="post">
+    <input name="file" type="file" multiple>
+    <input type="submit">
+    </form>
+    </body>
+        """
+    return HTMLResponse(content=content)
 
 
 if __name__ == '__main__':
