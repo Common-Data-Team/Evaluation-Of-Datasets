@@ -29,7 +29,7 @@ def get_distrib_missing_by_col(db: pd.DataFrame) -> dict:
 
 # Считаем распределение пропусков
 def get_missing_by_row(db: pd.DataFrame) -> Counter:
-    count_null = np.sum(db_copy.isnull(), axis=1)
+    count_null = np.sum(db.isnull(), axis=1)
     lst_missing_by_row = Counter(count_null)
     #print(lst_missing_by_row)
     return lst_missing_by_row
