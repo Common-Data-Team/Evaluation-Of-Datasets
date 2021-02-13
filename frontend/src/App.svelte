@@ -56,7 +56,7 @@
     #window {
         width: 100%;
         height: 100%;
-        background-color: #E5E5E5;
+        background-color: #F8F8F8;
     }
 
     header {
