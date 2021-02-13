@@ -14,5 +14,19 @@
 Помочь в развитии проектов [Common Data Team](https://github.com/Common-Data-Team) можно на [Patreon](https://www.patreon.com/commondatateam)
 
 ## 🚀 Get started
+Установите зависимости
+
+```bash
+npm install
+```
+Запустите проект 
+
+```bash
+npm run dev
+```
 
 ## 🐳 Запуск с помощью докера
+Соберите образ и запустите при помощи docker-compose
+```bash
+docker-compose up --build
+```
