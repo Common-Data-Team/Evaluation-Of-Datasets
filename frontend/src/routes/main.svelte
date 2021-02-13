@@ -1,5 +1,6 @@
 <script>
-import Steps from './_components/Steps.svelte'
+import Steps from './_components/Steps.svelte';
+import {push} from 'svelte-spa-router';
 </script>
 <header>
     <img id="logo" src="logo.svg" alt="cd">
@@ -15,7 +16,7 @@ import Steps from './_components/Steps.svelte'
         <div class="description">
             <h1>Check the Data</h1>
             <p>Сервис для аналитики и улучшения датасетов</p>
-            <button>Попробовать</button>
+            <button on:click={() => push('/service')}>Попробовать</button>
         </div>
         <div class="image">
             <img src="./images/main_img.svg" alt="main-image">
@@ -46,6 +47,10 @@ import Steps from './_components/Steps.svelte'
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
 <style>
+    button:hover {
+        cursor: pointer;
+    }
+
     main {
         width: 100%;
         height: 100%;
@@ -56,8 +61,6 @@ import Steps from './_components/Steps.svelte'
         align-items: center;
         padding: 30px;
     }
-
-
 
     .second-block h1 {
         text-align: center;
