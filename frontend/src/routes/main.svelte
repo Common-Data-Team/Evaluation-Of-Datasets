@@ -1,5 +1,5 @@
 <script>
-
+import Steps from './_components/Steps.svelte'
 </script>
 <header>
     <div>
@@ -43,6 +43,7 @@
             </div>
         </div>
     </div>
+    <Steps/>
 </main>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
