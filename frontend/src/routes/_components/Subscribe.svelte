@@ -3,7 +3,6 @@
 
     let email;
     let re = /\S+@\S+\.\S+/;
-    let hasSubscription = false;
     let span_text = writable('');
 
     let show_span = false;
@@ -13,15 +12,22 @@
     async function submit() {
         if (!re.test(email)){
             $span_text = 'Введите Email';
-            success = false
+            success = false;
             return;
         }
+        if (localStorage.getItem('hasSubscription')){
+            $span_text = 'Вы уже подписаны';
+            success = false;
+            return;
+        }
+
         let resp = await fetch("https://backendatasets.commondata.ru/email", {
             method: "POST",
             body: JSON.stringify({email: email})
-        }).then(r => r.json());
+        }).then(r => r.json()).catch(_ => {$span_text = 'Произошла ошибка подключения'; success = false});
         $span_text = 'Вы успешно подписались';
         success = true;
+        localStorage.setItem('hasSubscription', 'true')
         return resp;
     }
 </script>
