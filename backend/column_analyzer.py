@@ -42,7 +42,6 @@ def get_separator(series):
                 (vc[counted_symbol.min()] / len(counted_symbol) < 0.8) and (len(vc) > 2):
             scores[symbol] += 3
         # TODO Add more criteria
-
     res = list(filter(lambda pair: pair[1] > 0, scores.items()))
     return max(res, key=lambda x: x[1])[0] if len(res) > 0 else None
 
@@ -67,8 +66,10 @@ def read_auto_sep():
 
 def get_chart_data(df: pd.DataFrame):
     chart_data = {}
-    if df.shape[0] > 1000:
-        df = df.sample(1000)
+    df = df.drop_duplicates()
+    max_rows = 1000
+    if df.shape[0] > max_rows:
+        df = df.sample(max_rows)
     for column, _type in zip(df.columns, df.dtypes):
         if _type == 'int':
             chart_data[column] = {'type': 'line', 'data': df[column]}
@@ -79,7 +80,7 @@ def get_chart_data(df: pd.DataFrame):
                 chart_data[column] = {'type': 'pie', 'data': {
                     unique: amount / df.shape[0] for unique, amount in df[column].value_counts().items()
                 }}
-                continue
+
             if sep:
                 chart_data[column] = {'type': 'bar', 'data': value_counts(df[column].str.split(sep)).to_dict()}
     return chart_data
