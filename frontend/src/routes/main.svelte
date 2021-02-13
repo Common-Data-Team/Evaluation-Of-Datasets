@@ -1,15 +1,17 @@
 <script>
-import Steps from './_components/Steps.svelte';
-import {push} from 'svelte-spa-router';
-import Subscribe from './_components/Subscribe.svelte';
-import Footer from './_components/Footer.svelte';
+    import Steps from './_components/Steps.svelte';
+    import {push} from 'svelte-spa-router';
+    import Subscribe from './_components/Subscribe.svelte';
+    import Footer from './_components/Footer.svelte';
 </script>
 <header>
     <img id="logo" src="logo.svg" alt="cd">
     <div class="social-icons">
         <a href="https://github.com/Common-Data-Team"><img src="./images/icons/Github_black.svg" alt="github-logo-icon"></a>
-        <a href="https://www.patreon.com/commondatateam"><img src="./images/icons/Patreon_black.svg" alt="patreon-logo-icon"></a>
-        <a href="https://www.linkedin.com/company/common-data-team"><img src="./images/icons/LinkedIN_black.svg" alt="linkedin-logo-icon"></a>
+        <a href="https://www.patreon.com/commondatateam"><img src="./images/icons/Patreon_black.svg"
+                                                              alt="patreon-logo-icon"></a>
+        <a href="https://www.linkedin.com/company/common-data-team"><img src="./images/icons/LinkedIN_black.svg"
+                                                                         alt="linkedin-logo-icon"></a>
         <a href="https://t.me/commondatateam"><img src="./images/icons/Telegram_black.svg" alt="telegram-logo-icon"></a>
     </div>
 </header>
@@ -32,7 +34,7 @@ import Footer from './_components/Footer.svelte';
             <div class="card">
                 <img src="./images/developer.svg" alt="developer-image">
                 <h3>Разработчики</h3>
-                <p>Профессионалы могут  удостовериться в качестве данных и ускорить процесс обработки датасета</p>
+                <p>Профессионалы могут удостовериться в качестве данных и ускорить процесс обработки датасета</p>
             </div>
             <div class="card">
                 <img src="./images/new.svg" alt="new-analytics-image">
@@ -42,19 +44,19 @@ import Footer from './_components/Footer.svelte';
             <div class="card">
                 <img src="./images/not_it.svg" alt="not-it-image">
                 <h3>Не ИТ специалисты</h3>
-                <p>Те, кто принимают решения на основе данных, могут воспользоваться автоматизированным алгоритмом и обработать датасет в один клик</p>
+                <p>Те, кто принимают решения на основе данных, могут воспользоваться автоматизированным алгоритмом и
+                    обработать датасет в один клик</p>
             </div>
         </div>
     </div>
     <Steps/>
     <h1 class="subscribe">Подписаться на новости сервиса</h1>
     <div class="subscribe">
-        <Subscribe></Subscribe>
+        <Subscribe/>
     </div>
-    <Footer></Footer>
+    <Footer/>
 </main>
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
+
 <style>
     button:hover {
         cursor: pointer;
@@ -64,6 +66,7 @@ import Footer from './_components/Footer.svelte';
         width: 100%;
         height: 100%;
     }
+
     header {
         display: flex;
         justify-content: space-between;
@@ -167,7 +170,7 @@ import Footer from './_components/Footer.svelte';
     }
 
 
-    @media (max-width: 700px) { 
+    @media (max-width: 700px) {
         .cards {
             flex-direction: column;
         }

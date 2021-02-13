@@ -1,6 +1,19 @@
+<script>
+
+    let email;
+
+    let hasSubscription = false;
+
+    function submit() {
+
+    }
+</script>
+
 <form class="wrapper_inpt">
-    <input type="email" placeholder="help@commondata.ru">
-    <input type="submit" class="btn_area" value="Subscribe">
+    <label>
+        <input type="email" placeholder="help@commondata.ru" bind:value={email}>
+        <button class="btn_area">Подписаться</button>
+    </label>
 </form>
 
 <style>
@@ -28,23 +41,30 @@
     }
 
     .btn_area {
-        width: 100px;
+        width: 110px;
         height: 40px;
         background: #1355FF;
         border-radius: 20px;
         color: #fff;
-        display: flex;
         align-items: center;
+        font-size: 12px;
         text-align: center;
         cursor: pointer;
     }
 
     input {
-      border: none;
-      background: none;
-      width: calc(100% - 84px);
-      height: 100%;
-      text-indent: 12px;
+        border: none;
+        background: none;
+        width: calc(100% - 84px);
+        /*height: 100%;*/
+        /*font-size: 16px;*/
+        text-indent: 12px;
+    }
+
+    label {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
     }
 
     @media (max-width: 700px) {
