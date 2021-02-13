@@ -88,7 +88,7 @@ import Footer from './_components/Footer.svelte';
         margin: 2%;
         padding: 20px;
         height: auto;
-        box-shadow: 6px 11px 19px rgba(193, 193, 193, 0.37), -21px -33px 86px #FFFFFF;
+        box-shadow: 6px 11px 19px rgba(193, 193, 193, 0.37), -20px -20px 86px #FFFFFF;
         border-radius: 10px;
     }
 
@@ -174,6 +174,10 @@ import Footer from './_components/Footer.svelte';
 
         #logo {
             width: 48px;
+        }
+
+        .card img {
+            width: 90%;
         }
     }
 
