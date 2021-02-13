@@ -50,7 +50,9 @@
 
     .step-block h1 {
         margin: 0;
+        font-size: calc(24px + (36 - 24) * ((100vw - 300px) / (1440 - 300)));
     }
+
     .step-number {
         font-family: 'Red Hat Display', sans-serif;
         color: #1355FF;
@@ -76,4 +78,16 @@
         width: 200px;
         margin-right: 50px;
     }
+
+    @media (max-width: 700px) {
+
+        .step-block img {
+            display: none;
+        }
+
+        .step-info p {
+            width: 200px;
+        }
+    }
+
 </style>
