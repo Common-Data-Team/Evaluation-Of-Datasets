@@ -1,23 +1,49 @@
-<input type="text" placeholder="Email address" name="mail" class="input-text" required>
-<input type="submit" value="Subscribe" class="input-subscribe">
+<form class="wrapper_inpt">
+    <input type="email" placeholder="help@commondata.ru">
+    <input type="submit" class="btn_area" value="Subscribe">
+</form>
 
 <style>
-
-    .input-text {
-        position: absolute;
-        width: 350px;
-        height: 50px;
-        background: #FEFEFE;
-        box-shadow: 0px 8px 80px rgba(0, 0, 0, 0.06);
-        border-color: transparent;
-        border-radius: 57px;
+    * {
+        margin: 0;
+        padding: 0;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        font-family: sans-serif;
+        outline: none;
     }
 
-    .input-subscribe {
-        position: absolute;
+    .wrapper_inpt {
+        width: 400px;
+        height: 50px;
+        border-radius: 20px;
+        border: 1px solid #fff;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0px 8px 80px rgba(0, 0, 0, 0.06);
+        padding: 5px;
+    }
+
+    .btn_area {
         width: 100px;
         height: 40px;
-        background-color: #1355FF;
-        border-color: transparent;
+        background: #1355FF;
+        border-radius: 20px;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    input {
+      border: none;
+      background: none;
+      width: calc(100% - 84px);
+      height: 100%;
+      text-indent: 12px;
     }
 </style>
