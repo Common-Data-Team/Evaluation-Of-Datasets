@@ -3,11 +3,16 @@ import uvicorn
 from fastapi import FastAPI, File, UploadFile, Body
 import pandas as pd
 from io import BytesIO
+from pydantic import BaseModel
 from column_analyzer import get_chart_data
 
 
 app = FastAPI()
 email_template = re.compile('^[^@]+@[^@.]+\.[^@]+$')
+
+
+class Email(BaseModel):
+    email: str
 
 
 @app.post('/upload/')
@@ -16,9 +21,9 @@ def process(file: UploadFile = File(...)):
     return {'charts': get_chart_data(df)}
 
 
-@app.post('/email/{email}')
-def save_email(email: str):
-    email_template.findall(email)
+@app.post('/email/')
+def save_email(email_json: Email = Body(...)):
+    email_template.findall(email_json.email)
 
 
 if __name__ == '__main__':
