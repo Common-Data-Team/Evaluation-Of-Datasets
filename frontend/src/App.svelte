@@ -28,13 +28,12 @@
         }
     }
 </script>
-<div id="window">
 <header>
     <img src="logo.svg" alt="cd">
     <p>Check the Data</p>
 </header>
 <main>
-    <p class="tagline">Узнайте особенности вашего датасета при помощи наших алгоритмов!</p>
+    <p class="tagline">Узнайте, как улучшить свой датасет с помощью наших алгоритмов!</p>
     <div class="input-zone">
     <input type="file" id="file" name="files" bind:files on:change={changeLabel}>
         <label for="file" id="file-label"
@@ -49,15 +48,9 @@
     </div>
 <button id="submit-button">Обработать</button>
 </main>
-</div>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
 <style>
-    #window {
-        width: 100%;
-        height: 100%;
-        background-color: #F8F8F8;
-    }
 
     header {
         display: flex;
@@ -71,7 +64,8 @@
 
     header p {
         font-family: 'Raleway', sans-serif;
-        font-size: 40px;
+        font-weight: 800;
+        font-size: 50px;
         margin: 0 0 0 20px;
     }
 
