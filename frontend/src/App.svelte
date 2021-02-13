@@ -1,5 +1,5 @@
 <script>
-    let file;
+    let files;
 
     function overrideDefault(event) {
         event.preventDefault();
@@ -7,7 +7,25 @@
     }
 
     function addFile(event) {
-        file = event.dataTransfer.files;
+        files = event.dataTransfer.files;
+        changeLabel();
+    }
+
+    function changeLabel() {
+        let label_text = document.getElementById('input-label');
+        if (files) {
+            if (files[0].name.split('.').pop() != 'csv') {
+                label_text.innerText = files[0].name + ' - формат не поддерживается!';
+                label_text.style.color="#FF0033";
+
+            } else {
+                label_text.innerText = files[0].name + ' - загружен';
+                label_text.style.color="#313131";
+            }
+        } else {
+            label_text.innerText = 'Ошибка при загрузке файла!';
+            label_text.style.color="#FF0033";
+        }
     }
 </script>
 <header>
@@ -17,18 +35,18 @@
 <main>
     <p class="tagline">Узнайте особенности вашего датасета при помощи наших алгоритмов!</p>
     <div class="input-zone">
-    <input type="file" id="file" name="files" bind:files={file}>
+    <input type="file" id="file" name="files" bind:files on:change={changeLabel}>
         <label for="file" id="file-label"
-        on:dragover={overrideDefault}
+        on:dragover={(e) => {overrideDefault(e); document.getElementById('file-label').style.filter="blur(1px)"}}
         on:dragenter={overrideDefault}
-        on:dragleave={overrideDefault}
-        on:drop={(e) => {overrideDefault(e); addFile(e);}}
+        on:dragleave={(e) => {overrideDefault(e); document.getElementById('file-label').style.filter="blur(0)"}}
+        on:drop={(e) => {overrideDefault(e); addFile(e); document.getElementById('file-label').style.filter="blur(0)"}}
         >
             <img src="download.svg" alt="">
-            <p>Выберите файл для загрузки или перетащите сюда</p>
+            <p id="input-label">Выберите файл для загрузки или перетащите сюда</p>
         </label>
     </div>
-<button class="submit-button" >Обработать</button>
+<button id="submit-button">Обработать</button>
 </main>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
@@ -55,7 +73,7 @@
 
     .tagline {
         font-family: 'Roboto', sans-serif;
-        font-size: max(25px, 1.8vw);
+        font-size: max(20px, 2vw);
         text-align: center;
         margin: 20px 50px 50px 50px;
     }
@@ -89,9 +107,10 @@
         font-family: 'Raleway', sans-serif;
         font-weight: 400;
         font-size: 20px;
+        color: #313131;
     }
 
-    .submit-button {
+    #submit-button {
         background-color: #282828;
         font-family: 'Raleway', sans-serif;
         font-weight: 400;
@@ -100,7 +119,7 @@
         padding: 20px 45px;
         margin: 20px auto;
     }
-    .submit-button:hover {
+    #submit-button:hover {
         cursor: pointer;
     }
 </style>
