@@ -28,6 +28,7 @@
         }
     }
 </script>
+<div id="window">
 <header>
     <img src="logo.svg" alt="cd">
     <p>Check the Data</p>
@@ -48,9 +49,14 @@
     </div>
 <button id="submit-button">Обработать</button>
 </main>
+</div>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
 <style>
+    #window {
+        background-color: #E5E5E5;
+    }
+
     header {
         display: flex;
         align-items: center;
@@ -79,7 +85,7 @@
     }
 
     .input-zone {
-        background-color: #F9F9F9;
+        background-color: #FEFEFE;
         border: 2px #282828 dashed;
         width: 80%;
         height: 400px;
