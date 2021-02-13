@@ -50,7 +50,7 @@
         justify-content: center;
         align-items: center;
         flex-wrap: wrap;
-        margin: 100px auto;
+        margin: 50px auto;
     }
 
     .chart {

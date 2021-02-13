@@ -12,6 +12,7 @@
             label_text.style.color="#FF0033";
         }
         if (files[0].name.split('.').pop() == 'csv') {
+            let headers = new Headers();
             let form_data = new FormData();
             form_data.append("file", files[0], files[0].name);
             let response;
@@ -179,7 +180,8 @@
     }
 
     #statistics-block {
-        height: 400px;
+        padding: 50px 0 0 0;
+        height: 800px;
     }
 
     #statistics-block h1 {
@@ -192,5 +194,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 100px auto;
     }
 </style>
