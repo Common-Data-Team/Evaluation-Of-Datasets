@@ -1,5 +1,5 @@
 <div class="component">
-    <h1>Этапы</h1>
+    <h1 class="title">Этапы</h1>
     <div class="step-block">
         <h1 class="step-number">01</h1>
         <div class="step-info">
@@ -13,6 +13,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@700&display=swap" rel="stylesheet">
 <style>
+    .title {
+        text-align: center;
+    }
+
     .step-block {
         display: flex;
         margin: 100px;

@@ -2,9 +2,7 @@
 import Steps from './_components/Steps.svelte'
 </script>
 <header>
-    <div>
-        <img src="logo.svg" alt="cd">
-    </div>
+    <img id="logo" src="logo.svg" alt="cd">
     <div class="social-icons">
         <a href="https://github.com/Common-Data-Team"><img src="./images/icons/Github_black.svg" alt="github-logo-icon"></a>
         <a href="https://www.patreon.com/commondatateam"><img src="./images/icons/Patreon_black.svg" alt="patreon-logo-icon"></a>
@@ -48,20 +46,28 @@ import Steps from './_components/Steps.svelte'
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;800&family=Roboto&display=swap" rel="stylesheet">
 <style>
-
     main {
+        width: 100%;
+        height: 100%;
+    }
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 30px;
     }
 
-    header {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        padding: 30px;
+
+
+    .second-block h1 {
+        text-align: center;
+        margin: 100px 0 50px 0;
     }
 
     .cards {
         display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .card {
@@ -80,15 +86,13 @@ import Steps from './_components/Steps.svelte'
 
     .first-block {
         display: flex;
+        justify-content: center;
         align-items: center;
+
     }
 
     header img {
         height: 60px;
-    }
-
-    main {
-        text-align: center;
     }
 
     .social-icons img {
@@ -109,5 +113,6 @@ import Steps from './_components/Steps.svelte'
         padding: 15px 45px;
         margin: 20px auto;
     }
+
 
 </style>
