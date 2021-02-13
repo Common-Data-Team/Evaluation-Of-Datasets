@@ -35,7 +35,6 @@
     footer {
       display: flex;
       bottom: 0;
-      padding: 5% 0;
       margin-top: 10%;
       width: 100%;
       background: #282828;

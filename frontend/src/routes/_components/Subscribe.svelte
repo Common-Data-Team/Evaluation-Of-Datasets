@@ -46,4 +46,11 @@
       height: 100%;
       text-indent: 12px;
     }
+
+    @media (max-width: 700px) {
+        .wrapper_inpt {
+            width: 90%;
+        }
+    }
+
 </style>
