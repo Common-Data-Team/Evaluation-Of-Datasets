@@ -7,7 +7,7 @@
           <a href="https://www.patreon.com/commondatateam">
             <li>поддержать проект</li>
           </a>
-          <a href="/privacy">
+          <a href="https://commondata.ru/privacy">
             <li>пользовательское соглашение</li>
           </a>
         </ul>

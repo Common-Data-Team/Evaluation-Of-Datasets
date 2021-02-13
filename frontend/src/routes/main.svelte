@@ -80,6 +80,7 @@ import Footer from './_components/Footer.svelte';
         display: flex;
         justify-content: center;
         align-items: center;
+        align-items: flex-start;
     }
 
     .card {
@@ -87,8 +88,8 @@ import Footer from './_components/Footer.svelte';
         width: 20%;
         margin: 2%;
         padding: 20px;
-        height: auto;
-        box-shadow: 6px 11px 19px rgba(193, 193, 193, 0.37), -21px -33px 86px #FFFFFF;
+        height: 470px;
+        box-shadow: 0px 9.03px 27.09px rgba(176, 190, 197, 0.32), 0px 3.39px 5.64px rgba(176, 190, 197, 0.32);
         border-radius: 10px;
     }
 
@@ -114,6 +115,7 @@ import Footer from './_components/Footer.svelte';
         display: flex;
         justify-content: center;
         align-items: center;
+        text-align: center;
     }
 
     .subscribe {
@@ -146,9 +148,32 @@ import Footer from './_components/Footer.svelte';
         margin: 20px auto;
     }
 
+    .card img {
+        width: 90%;
+    }
+
+    @media (max-width: 1270px) {
+        .card {
+            height: auto;
+        }
+
+        .first-view {
+            height: 30vh;
+        }
+
+        .first-block img {
+            width: 400px;
+        }
+    }
+
+
     @media (max-width: 700px) { 
         .cards {
             flex-direction: column;
+        }
+
+        .first-view {
+            height: 70vh;
         }
 
         .card {

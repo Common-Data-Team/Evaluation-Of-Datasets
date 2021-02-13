@@ -87,7 +87,7 @@
         }
 
         .step-info p {
-            width: 200px;
+            width: 80%;
         }
 
         .right {

@@ -147,6 +147,8 @@ def get_response_for_missing(db: pd.DataFrame) -> dict:
         response["miss_by_col"] = text_configs.miss_by_col_normal
     elif len(miss_by_col['missing_20']) > 0:
         response["miss_by_col"] = text_configs.miss_by_col_low
+    else:
+        response["miss_by_col"] = text_configs.miss_by_col_no
     
     response["missed_col_extreme"] = miss_by_col['missing_60']
     response["missed_col_normal"] = miss_by_col['missing_40']
