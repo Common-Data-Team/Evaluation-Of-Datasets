@@ -182,6 +182,10 @@
         height: 400px;
     }
 
+    #statistics-block h1 {
+        margin: 0;
+    }
+
     .spinner {
         width: 100%;
         display: flex;
