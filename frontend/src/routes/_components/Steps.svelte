@@ -80,7 +80,7 @@
         margin-right: 50px;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 850px) {
 
         .step-block img {
             display: none;

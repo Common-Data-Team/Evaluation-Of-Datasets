@@ -11,6 +11,7 @@
     }
 
     export let data;
+    console.log(data.info);
     let chartsSource = [];
     for (let key in data.charts) {
         chartsSource.push({
