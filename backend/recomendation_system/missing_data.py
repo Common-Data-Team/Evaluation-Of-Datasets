@@ -1,16 +1,18 @@
 import pandas as pd
 import numpy as np
 from collections import Counter
+from recomendation_system import text_configs
 
-import text_configs 
+
 # Считаем соотношение пропусков по каждой фиче
 def get_missing_by_col(db: pd.DataFrame) -> dict:
     dict_missing_by_col = {}
     for col in db.columns:
         pct_missing = np.mean(db[col].isnull())
-        #print('{} - {}%'.format(col, round(pct_missing*100)))
+        # print('{} - {}%'.format(col, round(pct_missing*100)))
         dict_missing_by_col[col] = pct_missing
     return dict_missing_by_col
+
 
 # will do: сделать мягкую настройку коэффициентов
 def get_distrib_missing_by_col(db: pd.DataFrame) -> dict:
@@ -27,12 +29,14 @@ def get_distrib_missing_by_col(db: pd.DataFrame) -> dict:
             miss_20_col.append(key)
     return {'missing_20': miss_20_col, 'missing_40': miss_40_col, 'missing_60': miss_60_col}
 
+
 # Считаем распределение пропусков
 def get_missing_by_row(db: pd.DataFrame) -> Counter:
     count_null = np.sum(db.isnull(), axis=1)
     lst_missing_by_row = Counter(count_null)
-    #print(lst_missing_by_row)
+    # print(lst_missing_by_row)
     return lst_missing_by_row
+
 
 # will do: сделать мягкую настройку коэффициентов
 def get_distrib_missing_by_row(db: pd.DataFrame) -> dict:
@@ -52,6 +56,7 @@ def get_distrib_missing_by_row(db: pd.DataFrame) -> dict:
         hard += miss_by_row[i]
     return {'light': light, 'normal': normal, 'hard': hard}
 
+
 # Считаем распределение пропусков в численных, категориальных, временных, булевых и текстовых данных
 def get_features_types(db: pd.DataFrame) -> dict:
     features = {'numeric': [], 'text_object': [], 'categorial': [], 'datetime': [], 'boolean': []}
@@ -68,6 +73,7 @@ def get_features_types(db: pd.DataFrame) -> dict:
         elif db[col].dtype == "bool":
             features['boolean'].append(col)
     return features
+
 
 def get_missing_by_features(db: pd.DataFrame) -> dict:
     features = get_features_types(db)
@@ -92,6 +98,7 @@ def get_missing_by_features(db: pd.DataFrame) -> dict:
             mising_features[key] = 0
     return mising_features
 
+
 # will do: сделать мягкую настройку коэффициентов
 def get_distrib_missing_by_features(db: pd.DataFrame) -> dict:
     miss_by_features = get_missing_by_features(db)
@@ -99,10 +106,10 @@ def get_distrib_missing_by_features(db: pd.DataFrame) -> dict:
     per_40 = []
     per_60 = []
 
-    description_dtype = {'numeric': "Числовые данные", 
-                         'text_object': "Текстовые и неклассифицируемые данные", 
-                         'categorial': "Категориальные данные", 
-                         'datetime': "Данные времени и даты", 
+    description_dtype = {'numeric': "Числовые данные",
+                         'text_object': "Текстовые и неклассифицируемые данные",
+                         'categorial': "Категориальные данные",
+                         'datetime': "Данные времени и даты",
                          'boolean': "Булевые данные"}
     for key, value in miss_by_features.items():
         if value >= 0.6:
@@ -112,6 +119,7 @@ def get_distrib_missing_by_features(db: pd.DataFrame) -> dict:
         elif value >= 0.2:
             per_20.append(description_dtype[key])
     return {'missing_20': per_20, 'missing_40': per_40, 'missing_60': per_60}
+
 
 # Делаем вердикт по пропускам в данных
 def get_response_for_missing(db: pd.DataFrame) -> dict:
@@ -142,30 +150,30 @@ def get_response_for_missing(db: pd.DataFrame) -> dict:
     miss_by_features = get_distrib_missing_by_features(db)
 
     if len(miss_by_col['missing_60']) > 0:
-        response["miss_by_col"] = text_configs.miss_by_col_extreme 
+        response["miss_by_col"] = text_configs.miss_by_col_extreme
     elif len(miss_by_col['missing_40']) > 0:
         response["miss_by_col"] = text_configs.miss_by_col_normal
     elif len(miss_by_col['missing_20']) > 0:
         response["miss_by_col"] = text_configs.miss_by_col_low
     else:
         response["miss_by_col"] = text_configs.miss_by_col_no
-    
+
     response["missed_col_extreme"] = miss_by_col['missing_60']
     response["missed_col_normal"] = miss_by_col['missing_40']
     response["missed_col_low"] = miss_by_col['missing_20']
 
     if miss_by_row['hard'] > 0:
-        response["miss_by_row"] += text_configs.miss_by_row_extreme 
+        response["miss_by_row"] += text_configs.miss_by_row_extreme
     elif miss_by_row['normal'] > 0:
         response["miss_by_row"] = text_configs.miss_by_row_normal
 
     if len(miss_by_features['missing_60']) > 0:
-        txt = text_configs.miss_by_feature_extreme 
+        txt = text_configs.miss_by_feature_extreme
         for name in miss_by_features['missing_60']:
             txt += (name + "\n")
-        response["miss_by_col"] = txt 
+        response["miss_by_col"] = txt
     elif len(miss_by_features['missing_40']) > 0:
-        txt = text_configs.miss_by_feature_normal 
+        txt = text_configs.miss_by_feature_normal
         for name in miss_by_features['missing_40']:
             txt += (name + "\n")
         response["miss_by_col"] = txt

@@ -6,13 +6,13 @@ from sklearn.covariance import EllipticEnvelope
 from sklearn.neighbors import LocalOutlierFactor
 from sklearn.svm import OneClassSVM
 from collections import Counter
+from recomendation_system import text_configs
 
-import text_configs 
 
 # Определим тип данных для каждых фичей
 # Это необходимо, для того, чтобы искать выбросы по числовым и категориальным
 def get_features_types(db: pd.DataFrame) -> dict:
-    features = {'numeric': [], 'text_object': [], 
+    features = {'numeric': [], 'text_object': [],
                 'categorial': [], 'datetime': [], 'boolean': []}
     for col in db.columns:
         if db[col].dtype == "object":
@@ -27,6 +27,7 @@ def get_features_types(db: pd.DataFrame) -> dict:
         elif db[col].dtype == "bool":
             features['boolean'].append(col)
     return features
+
 
 # Оставляем только категориальные и числовые фичи
 def preprocesing_data(db: pd.DataFrame) -> pd.DataFrame:
@@ -45,11 +46,13 @@ def preprocesing_data(db: pd.DataFrame) -> pd.DataFrame:
     cat_lst = f_type['numeric'] + f_type['categorial']
     return db_copy[cat_lst]
 
+
 # Считаем изолированные лес (выявляет неоднородности)
 def get_iso(db: pd.DataFrame) -> list:
     iso = IsolationForest(contamination=0.01)
     yhat_iso = iso.fit_predict(db)
     return yhat_iso == -1
+
 
 # Считаем выбросы из нормального распределения
 def get_gauss(db: pd.DataFrame) -> list:
@@ -57,11 +60,13 @@ def get_gauss(db: pd.DataFrame) -> list:
     yhat_gaus = ee.fit_predict(db)
     return yhat_gaus == -1
 
+
 # Считаем неоднородности среди ближайших соседей
 def get_lof(db: pd.DataFrame) -> list:
     lof = LocalOutlierFactor()
     yhat_lof = lof.fit_predict(db)
     return yhat_lof == -1
+
 
 # Считаем one svm для определения новизны в данных
 def get_svm(db: pd.DataFrame) -> list:
@@ -69,10 +74,11 @@ def get_svm(db: pd.DataFrame) -> list:
     yhat_svm = ee.fit_predict(db)
     return yhat_svm == -1
 
+
 def get_outliers(db: pd.DataFrame) -> Counter:
-    outliers = pd.DataFrame({'iso': get_iso(db), 
-                             'gauss': get_gauss(db), 
-                             'lof': get_lof(db), 
+    outliers = pd.DataFrame({'iso': get_iso(db),
+                             'gauss': get_gauss(db),
+                             'lof': get_lof(db),
                              'svm': get_svm(db)})
 
     for col in outliers.columns:

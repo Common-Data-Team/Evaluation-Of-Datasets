@@ -7,7 +7,7 @@ import pandas as pd
 from io import BytesIO
 from pydantic import BaseModel
 from column_analyzer import get_chart_data
-from recomendation_system.missing_data import get_response_for_missing
+from recomendation_system.main import get_response
 from google_sheets import paste_email
 
 app = FastAPI()
@@ -17,7 +17,6 @@ origins = [
     "http://datasets.commondata.ru",
     "https://datasets.commondata.ru",
     "http://localhost:5000",
-
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -36,7 +35,7 @@ class Email(BaseModel):
 def process(file: UploadFile = File(...)):
     df = pd.read_csv(BytesIO(file.file.read()))
     chart_data = get_chart_data(df)
-    rec_data = get_response_for_missing(df)
+    rec_data = get_response(df)
     return {'charts': chart_data, 'info': rec_data}
 
 

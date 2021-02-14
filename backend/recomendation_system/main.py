@@ -1,6 +1,7 @@
 import pandas as pd
-from missing_data import get_response_for_missing
-from outliers_data import get_response_for_outliers
+from recomendation_system.missing_data import get_response_for_missing
+from recomendation_system.outliers_data import get_response_for_outliers
+
 
 def get_response(db: pd.DataFrame) -> dict:
     '''
