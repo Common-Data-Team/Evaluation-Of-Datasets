@@ -65,8 +65,8 @@
     }
 </script>
 <header>
-    <img src="logo.svg" alt="cd">
-    <p>Check the Data</p>
+    <a href="/"><img src="logo.svg" alt="cd"></a>
+    <a href="/" class="main-link"><p>Check the Data</p></a>
 </header>
 <main>
     <div class="first-view">
@@ -195,5 +195,10 @@
         justify-content: center;
         align-items: center;
         margin: 100px auto;
+    }
+
+    .main-link {
+        text-decoration: none;
+        color: #282828;
     }
 </style>
