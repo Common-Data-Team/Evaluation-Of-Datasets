@@ -40,13 +40,15 @@
 </script>
 <div class="charts-block">
     {#each Object.keys(data.charts) as key, ind}
-    <div class="chart">
         {#if data.charts[key].type == 'bar'}
+            <div class="chart">
             <SvelteFC {...chartConfigs} dataSource={chartsSource[ind]} type="column2d"/>
+            </div>
         {:else if data.charts[key].type == 'pie'}
-            <SvelteFC {...chartConfigs} dataSource={chartsSource[ind]} type="pie2d"/>
+            <div class="chart">
+                <SvelteFC {...chartConfigs} dataSource={chartsSource[ind]} type="pie2d"/>
+            </div>
         {/if}
-    </div>
     {/each}
 </div>
 <h1>Рекомендации</h1>
