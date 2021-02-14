@@ -7,8 +7,9 @@ import pandas as pd
 from io import BytesIO
 from pydantic import BaseModel
 from column_analyzer import get_chart_data
-from recomendation_system.main import get_response
+from recomendation_system.missing_data import get_response_for_missing
 from google_sheets import paste_email
+import logging
 
 app = FastAPI()
 email_template = re.compile('^[^@]+@[^@.]+\.[^@]+$')
@@ -33,9 +34,12 @@ class Email(BaseModel):
 
 @app.post('/upload')
 def process(file: UploadFile = File(...)):
+    logging.info("Got a request")
     df = pd.read_csv(BytesIO(file.file.read()))
     chart_data = get_chart_data(df)
-    rec_data = get_response(df)
+    # rec_data = get_response(df)
+    rec_data = get_response_for_missing(df)
+    # rec_data = {'Какая-то': 'жопа'}
     return {'charts': chart_data, 'info': rec_data}
 
 
