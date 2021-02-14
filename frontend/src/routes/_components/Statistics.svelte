@@ -4,6 +4,12 @@
     import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
     import SvelteFC, {fcRoot} from 'svelte-fusioncharts';
 
+    let missesDict = {
+        missed_col_extreme: 'Названия признаков с экстремальной долей пропусков:',
+        missed_col_normal: 'Названия признаков с нормальной долей пропусков:',
+        missed_col_low: 'Названия признаков с вполне терпимой долей пропусков:'
+    }
+
     export let data;
     let chartsSource = [];
     for (let key in data.charts) {
@@ -44,10 +50,25 @@
     {/each}
 </div>
 <h1>Рекомендации</h1>
-<div class="recomendation-block">
-    <p>{data.info.miss_by_col}</p>
-</div>
+{#each Object.keys(data.info.missings) as key}
+    {#if typeof data.info.missings[key] == 'string' && data.info.missings[key] != ''}
+        <div class="recomendation-block">
+            <p>{data.info.missings[key]}</p>
+        </div>
+    {:else if data.info.missings[key].isArray && data.info.missings[key].length != 0}
+        <div class="recomendation-block">
+            <h1>{missesDict[key]}</h1>
+            {#each data.info.missings[key] as signs}
+                <div class="misses">
+                    <p>{signs}</p>
+                </div>
+            {/each}
+        </div>
+    {/if}
+{/each}
+
 <footer></footer>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
 <style>
     .charts-block {
         display: flex;
@@ -65,17 +86,17 @@
     }
 
     .recomendation-block {
-        width: auto;
+        max-width: 700px;
+        font-family: 'IBM Plex Sans', sans-serif;
+        text-align: left;
         border-radius: 10px;
         box-shadow: 0px 9.03012px 27.0904px rgba(176, 190, 197, 0.32);
         background-color: #FFFFFF;
         margin: 50px auto;
-        padding: 50px;
+        padding: 30px;
     }
 
     footer {
-        position: absolute;
-        bottom: 0;
         height: 50px;
         width: 100%;
         margin-top: 100px;

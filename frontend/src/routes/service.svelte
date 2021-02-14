@@ -13,7 +13,7 @@
         }
         if (files[0].name.split('.').pop() == 'csv') {
             let form_data = new FormData();
-            form_data.append("file", files[0], files[0].name);
+            form_data.append("file", files[0]);
             let response;
             show_statistics = true;
             document.getElementById('statistics-block').scrollIntoView({block: 'start', behavior: 'smooth'});
@@ -180,7 +180,7 @@
 
     #statistics-block {
         padding: 50px 0 0 0;
-        height: 800px;
+        min-height: 800px;
     }
 
     #statistics-block h1 {
@@ -200,4 +200,5 @@
         text-decoration: none;
         color: #282828;
     }
+
 </style>
