@@ -4,7 +4,7 @@
 
     let show_statistics = false;
     let files = [];
-    const url = 'https://backendatasets.commondata.ru/'
+    const url = 'https://checkbackend.commondata.ru/'
     async function sendFile() {
         if (files.length === 0) {
             let label_text = document.getElementById('input-label')
@@ -23,7 +23,8 @@
                     body: form_data
                 }).then(response => response.json())
             } catch (error) {
-                throw new Error(error.text)
+                console.log(error)
+                throw new Error(error.text);
             }
             return response;
         }
