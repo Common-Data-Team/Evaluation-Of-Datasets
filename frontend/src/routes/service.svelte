@@ -12,7 +12,6 @@
             label_text.style.color="#FF0033";
         }
         if (files[0].name.split('.').pop() == 'csv') {
-            let headers = new Headers();
             let form_data = new FormData();
             form_data.append("file", files[0], files[0].name);
             let response;
