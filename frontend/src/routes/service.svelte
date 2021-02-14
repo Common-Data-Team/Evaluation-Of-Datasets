@@ -12,7 +12,6 @@
             label_text.style.color="#FF0033";
         }
         if (files[0].name.split('.').pop() == 'csv') {
-            let headers = new Headers();
             let form_data = new FormData();
             form_data.append("file", files[0], files[0].name);
             let response;
@@ -65,8 +64,8 @@
     }
 </script>
 <header>
-    <img src="logo.svg" alt="cd">
-    <p>Check the Data</p>
+    <a href="/"><img src="logo.svg" alt="cd"></a>
+    <a href="/" class="main-link"><p>Check the Data</p></a>
 </header>
 <main>
     <div class="first-view">
@@ -195,5 +194,10 @@
         justify-content: center;
         align-items: center;
         margin: 100px auto;
+    }
+
+    .main-link {
+        text-decoration: none;
+        color: #282828;
     }
 </style>

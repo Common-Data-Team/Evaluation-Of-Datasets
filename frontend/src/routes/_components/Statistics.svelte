@@ -37,13 +37,17 @@
     <div class="chart">
         {#if data.charts[key].type == 'bar'}
             <SvelteFC {...chartConfigs} dataSource={chartsSource[ind]} type="column2d"/>
-        {:else}
+        {:else if data.charts[key].type == 'pie'}
             <SvelteFC {...chartConfigs} dataSource={chartsSource[ind]} type="pie2d"/>
         {/if}
     </div>
     {/each}
 </div>
-
+<h1>Рекомендации</h1>
+<div class="recomendation-block">
+    <p>{data.info.miss_by_col}</p>
+</div>
+<footer></footer>
 <style>
     .charts-block {
         display: flex;
@@ -58,6 +62,23 @@
         padding: 20px;
         box-shadow: 0px 9.03012px 27.0904px rgba(176, 190, 197, 0.32);
         margin: 25px;
+    }
+
+    .recomendation-block {
+        width: auto;
+        border-radius: 10px;
+        box-shadow: 0px 9.03012px 27.0904px rgba(176, 190, 197, 0.32);
+        background-color: #FFFFFF;
+        margin: 50px auto;
+        padding: 50px;
+    }
+
+    footer {
+        position: absolute;
+        bottom: 0;
+        height: 50px;
+        width: 100%;
+        margin-top: 100px;
     }
 </style>
 

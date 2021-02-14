@@ -5,7 +5,7 @@
     import Footer from './_components/Footer.svelte';
 </script>
 <header>
-    <img id="logo" src="logo.svg" alt="cd">
+    <a href="/"><img id="logo" src="logo.svg" alt="cd"></a>
     <div class="social-icons">
         <a href="https://github.com/Common-Data-Team"><img src="./images/icons/Github_black.svg" alt="github-logo-icon"></a>
         <a href="https://www.patreon.com/commondatateam"><img src="./images/icons/Patreon_black.svg"
