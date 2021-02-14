@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 from nltk.metrics import edit_distance
 from collections import Counter
-import recomendation_system.text_configs
+from recomendation_system import text_configs
 
 # Считаем неинформативные признаки
 # will do: сделать мягкое определение коэффициента
