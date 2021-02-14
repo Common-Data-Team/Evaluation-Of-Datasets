@@ -2,6 +2,7 @@ from collections import Counter
 import pandas as pd
 
 sep_symbols = [';', ',', '\t', '.', '/', '\\']
+MAX_N = 100
 
 
 def check_bigtext(series):
@@ -46,11 +47,11 @@ def get_separator(series):
     return max(res, key=lambda x: x[1])[0] if len(res) > 0 else None
 
 
-def read_auto_sep():
+def read_auto_sep(bytes_):
     success = False
     for sep in sep_symbols:
         try:
-            df = pd.read_csv('soap.csv', sep=sep)
+            df = pd.read_csv(bytes_, sep=sep)
             if len(df.columns) < 2:
                 raise ValueError("Skip")
         except:
@@ -71,8 +72,9 @@ def get_chart_data(df: pd.DataFrame):
     if df.shape[0] > max_rows:
         df = df.sample(max_rows)
     for column, _type in zip(df.columns, df.dtypes):
-        if _type == 'int':
-            chart_data[column] = {'type': 'line', 'data': df[column]}
+
+        if _type in ['int64', 'int32', 'float64', 'float32']:
+            chart_data[column] = {'type': 'hist', 'data': df[column].to_list()}
         elif _type == 'object':
             sep = get_separator(df[column])
             is_cat = check_categories(df[column])
@@ -80,7 +82,9 @@ def get_chart_data(df: pd.DataFrame):
                 chart_data[column] = {'type': 'pie', 'data': {
                     unique: amount / df.shape[0] for unique, amount in df[column].value_counts().items()
                 }}
-
-            if sep:
-                chart_data[column] = {'type': 'bar', 'data': value_counts(df[column].str.split(sep)).to_dict()}
+            elif sep:
+                chart_data[column] = {
+                    'type': 'bar', 'data': value_counts(
+                        df[column].str.split(sep)).sort_values().head(MAX_N).to_dict()
+                }
     return chart_data

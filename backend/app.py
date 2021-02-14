@@ -12,6 +12,7 @@ from google_sheets import paste_email
 
 app = FastAPI()
 email_template = re.compile('^[^@]+@[^@.]+\.[^@]+$')
+
 origins = [
     "http://datasets.commondata.ru",
     "https://datasets.commondata.ru",
