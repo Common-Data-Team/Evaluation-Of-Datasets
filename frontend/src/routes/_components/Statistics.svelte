@@ -53,15 +53,15 @@
     {/each}
 </div>
 <h1>Рекомендации</h1>
-{#each Object.keys(data.info.missings) as key}
-    {#if typeof data.info.missings[key] == 'string' && data.info.missings[key] != ''}
+{#each Object.keys(data.info) as key}
+    {#if typeof data.info[key] == 'string' && data.info[key] != ''}
         <div class="recomendation-block">
-            <p>{data.info.missings[key]}</p>
+            <p>{data.info[key]}</p>
         </div>
-    {:else if data.info.missings[key].isArray && data.info.missings[key].length != 0}
+    {:else if Array.isArray(data.info[key]) && data.info[key].length != 0}
         <div class="recomendation-block">
             <h1>{missesDict[key]}</h1>
-            {#each data.info.missings[key] as signs}
+            {#each data.info[key] as signs}
                 <div class="misses">
                     <p>{signs}</p>
                 </div>
