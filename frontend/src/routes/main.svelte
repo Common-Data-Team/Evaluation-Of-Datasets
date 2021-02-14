@@ -1,4 +1,5 @@
 <script>
+    //some comment to push
     import Steps from './_components/Steps.svelte';
     import {push} from 'svelte-spa-router';
     import Subscribe from './_components/Subscribe.svelte';
