@@ -17,11 +17,12 @@ email_template = re.compile('^[^@]+@[^@.]+\.[^@]+$')
 origins = [
     "http://datasets.commondata.ru",
     "https://datasets.commondata.ru",
+    "https://commondata.ru",
     "http://localhost:5000",
 ]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -33,9 +34,8 @@ class Email(BaseModel):
 
 
 @app.post('/upload')
-def process(file: UploadFile = File(...)):
-    logging.info("Got a request")
-    df = pd.read_csv(BytesIO(file.file.read()))
+def process(file: bytes = File(...)):
+    df = pd.read_csv(BytesIO(file))
     chart_data = get_chart_data(df)
     # rec_data = get_response(df)
     rec_data = get_response_for_missing(df)

@@ -8,7 +8,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.frontend.entrypoints=https"
-      - "traefik.http.routers.frontend.rule=Host(`datasets.commondata.ru`)"
+      - "traefik.http.routers.frontend.rule=Host(`check.commondata.ru`)"
       - "traefik.http.routers.frontend.tls=true"
       - "traefik.http.routers.frontend.tls.certresolver=letsEncrypt"
       - "traefik.http.middlewares.redirect-to-https.redirectScheme.scheme=https"
@@ -21,7 +21,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.backend.entrypoints=https"
-      - "traefik.http.routers.backend.rule=Host(`backendatasets.commondata.ru`)"
+      - "traefik.http.routers.backend.rule=Host(`checkbackend.commondata.ru`)"
       - "traefik.http.routers.backend.tls=true"
       - "traefik.http.routers.backend.tls.certresolver=letsEncrypt"
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
@@ -44,7 +44,7 @@ services:
       - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.entrypoints=https"
-      - "traefik.http.routers.traefik.rule=Host(`traefikdatasets.commondata.ru`)"
+      - "traefik.http.routers.traefik.rule=Host(`checktraefik.commondata.ru`)"
       - "traefik.http.routers.traefik.tls=true"
       - "traefik.http.routers.traefik.tls.certresolver=letsEncrypt"
       - "traefik.http.routers.traefik.service=api@internal"
