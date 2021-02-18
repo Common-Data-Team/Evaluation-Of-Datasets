@@ -21,7 +21,7 @@
             return;
         }
 
-        let resp = await fetch("https://backendatasets.commondata.ru/email", {
+        let resp = await fetch("https://checkbackend.commondata.ru/email", {
             method: "POST",
             body: JSON.stringify({email: email})
         }).then(r => r.json()).catch(_ => {$span_text = 'Произошла ошибка подключения'; success = false});
